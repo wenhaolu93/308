@@ -1,4 +1,4 @@
-<%response.sendRedirect("index");%>
+<%response.sendRedirect("search");%>
 <html>
 <body>
 <h2>Hello World!</h2>

@@ -181,11 +181,11 @@
                                     </ul>
                                 </li>
                                 </c:when>
-     								 <c:otherwise>
+     					 		<c:otherwise>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome ${sessionScope.username}</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<c:url value="/redirect:useraccount"/>">Account Information</a></li>
+                                        <li><a href="<c:url value="useraccount"/>">Account Information</a></li>
                                     </ul>
                                 </li>
                                 

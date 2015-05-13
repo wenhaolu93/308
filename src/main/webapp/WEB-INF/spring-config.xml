@@ -46,6 +46,8 @@
 		
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix">
 			<value>/WEB-INF/pages/</value>
 		</property>
@@ -53,7 +55,10 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-
+	
+	<mvc:view-controller path="/login" view-name="login"/>
+	<mvc:view-controller path="/useraccount" view-name="user-account"/>
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<bean id="dataDaoImpl" class="dao.DataDaoImpl" />
 	<bean id="dataServiceImpl" class="services.DataServiceImpl" />

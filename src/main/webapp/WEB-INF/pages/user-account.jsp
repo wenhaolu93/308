@@ -337,16 +337,11 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">HI, MEMBER</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Account Information</a></li>
-                            <li><a href="#">Payment Method</a></li>
-                            <li><a href="#">My Favourite Movies</a></li>
-                            <li><a href="#">My Favourite Theaters</a></li>
-                            <li><a href="#">Notification</a></li>
-                            
-                        </ul>
-                    </li>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome ${sessionScope.username}</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<c:url value="useraccount"/>">Account Information</a></li>
+                                    </ul>
+                                </li>
                     <li class="dropdown dropdown-aux animate-click" data-animate-in="animated bounceInUp" data-animate-out="animated fadeOutDown" style="z-index:500;">
                         <a href="#" class="dropdown-form-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></a>
                         <ul class="dropdown-menu dropdown-menu-user animate-wr">
@@ -422,7 +417,7 @@
                                             
                                             <dt>Your name</dt>
                                             <dd>
-                                                <span class="pull-left">${sessionScope.firstame} ${sessionScope.lastname}</span>
+                                                <span class="pull-left">${sessionScope.firstname} ${sessionScope.lastname}</span>
                                                 <a href="#" class="btn btn-xs btn-base btn-icon fa-edit pull-right"><span>Edit</span></a>
                                             </dd>
                                             <hr>

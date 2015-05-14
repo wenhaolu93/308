@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import entity.*;
+import entity.User;
 
 public interface DataDao {
 	public int insertRow(User user);

@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import entity.User;
 
 @Repository
@@ -20,17 +21,34 @@ public class DataDaoImpl implements DataDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	Session session = null;
 
 	@Override
 	@Transactional
 	public int insertRow(User user) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(user);
-		tx.commit();
-		Serializable id = session.getIdentifier(user);
-		session.close();
-		return (Integer) id;
+
+		try{
+
+			session = sessionFactory.getCurrentSession();
+			session.beginTransaction();
+			 Query query = sessionFactory.getCurrentSession().createSQLQuery("insert into user (username,password,firstname,lastname,email) values ('"+user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"+user.getLastname()+"','"+user.getEmail()+"');");
+			 query.setString("email1", user.getEmail());
+			 query.setString("password1", user.getPassword());
+			 query.setString("username1", user.getUsername());
+			 query.setString("firstname1", user.getFirstname());
+			 query.setString("lastname1", user.getLastname());
+			 query.executeUpdate();
+
+		   session.getTransaction().commit();
+		   
+			 sessionFactory.getCurrentSession().flush();
+			 
+			 sessionFactory.getCurrentSession().close();
+			 return 1;
+		 } catch(Exception e){
+			 return 0;
+		 }
+		
 	}
 
 	@Override

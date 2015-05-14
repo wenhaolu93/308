@@ -239,7 +239,8 @@
                                 <h2>Sign in to your account</h2>
                             </div>
                             <div class="form-body">
-                                <form:form id="LoginForm" class="sky-form" modelAttribute="user" method="post" action="login">                                    
+                                <form:form id="LoginForm" class="sky-form" modelAttribute="user" method="post" action="login"> 
+                                	<label><font face="verdana" color="red">*${sessionScope.message}</font></label>                                   
                                     <fieldset>                  
                                         <section>
                                             <div class="form-group">

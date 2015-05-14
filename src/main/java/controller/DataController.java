@@ -3,8 +3,6 @@ package controller;
 
 import java.util.List;
 
-
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import entity.*;
-import services.*;
+import services.DataService;
+import entity.User;
 
 @Controller
 public class DataController {
@@ -45,14 +43,18 @@ public class DataController {
 		return new ModelAndView("redirect:user-account");
 	}
 	
-//	@RequestMapping("index")
-//	public ModelAndView getIndex(@ModelAttribute User user) {
-//		return new ModelAndView("index");
-//	}
-//	@RequestMapping("signin")
-//	public ModelAndView signIn(@ModelAttribute User user) {
-//		return new ModelAndView("redirect:sign_in");
-//	}
+	@RequestMapping("index")
+	public ModelAndView getIndex(@ModelAttribute User user) {
+		return new ModelAndView("index");
+	}
+	@RequestMapping("signup")
+	public ModelAndView signUp(@ModelAttribute User user) {
+		return new ModelAndView("signup");
+	}
+	@RequestMapping("signin")
+	public ModelAndView signIn(@ModelAttribute User user) {
+		return new ModelAndView("redirect:sign_in");
+	}
 	
 	@RequestMapping("form")
 	public ModelAndView getForm(@ModelAttribute User user) {
@@ -64,10 +66,10 @@ public class DataController {
 		return new ModelAndView("search");
 	}
 	
-	@RequestMapping("register")
-	public ModelAndView registerUser(@ModelAttribute User user) {
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	public ModelAndView registerUser(@ModelAttribute(value="user") User user, ModelMap modelMap, HttpSession session) {
 		dataService.insertRow(user);
-		return new ModelAndView("redirect:list");
+		return new ModelAndView("index");
 	}
 	
 	@RequestMapping(value="logout",method=RequestMethod.GET)
@@ -77,32 +79,35 @@ public class DataController {
 	}
 	
 	
-//	@RequestMapping(method = RequestMethod.GET)
-//	public String login(ModelMap modelMap){
-//		modelMap.put("user", new User());
-//		return "login";
-//	}
+	@RequestMapping(method = RequestMethod.GET)
+	public String login(ModelMap modelMap){
+		modelMap.put("user", new User());
+		return "login";
+	}
 	
-//	@RequestMapping(value="login", method = RequestMethod.POST)
-//	public String login(@ModelAttribute(value="user") User acc, ModelMap modelMap, HttpSession session){
-//		if(dataService.login(acc)!=null){
-//			session.setAttribute("username", acc.getUsername());
-//			session.setAttribute("email", acc.getEmail());
-//			session.setAttribute("firstname", acc.getFirstname());
-//			session.setAttribute("lastname", acc.getLastname());
-//			return "index";
-//		}
-//		else{
-//			modelMap.put("message", "User is invalid");
-//			return "login";
-//		}
-//		
-//	}
-//	@RequestMapping("login")
-//	 public ModelAndView loginUser(@ModelAttribute User user) {
-//	  dataService.login(user);
-//	  return new ModelAndView("login");
-//	 }
+	@RequestMapping(value="login", method = RequestMethod.POST)
+	public String login(@ModelAttribute(value="user") User acc, ModelMap modelMap, HttpSession session){
+		acc = dataService.login(acc);
+		if(acc!=null){
+			session.setAttribute("username", acc.getUsername());
+			session.setAttribute("email", acc.getEmail());
+			session.setAttribute("firstname", acc.getFirstname());
+			session.setAttribute("lastname", acc.getLastname());
+			return "index";
+		}
+		else{
+			modelMap.put("message", "username/password is invalid");
+			session.setAttribute("message", "username/password is invalid");
+			return "login";
+		}
+		
+	}
+	
+	@RequestMapping("login")
+	 public ModelAndView loginUser(@ModelAttribute User user) {
+	  dataService.login(user);
+	  return new ModelAndView("login");
+	 }
 	
 	@RequestMapping("list")
 	public ModelAndView getList() {

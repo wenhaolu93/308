@@ -232,7 +232,7 @@
                                 <h2>Create an account</h2>
                             </div>
                             <div class="form-body">
-                            	<form:form id="registerForm" modelAttribute="employee" method="post" action="register" class="sky-form">                                    
+                            	<form:form id="registerForm" modelAttribute="user" method="post" action="register" class="sky-form">                                    
                                     <fieldset class="no-padding">           
                                         <section class="">
                                             <div class="row">
@@ -247,7 +247,7 @@
                                                     </div>               
                                                 </div>
                                             </div>
-                                            <div vlass="row">
+                                            <div class="row">
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
                                                         <div class="form-group">
@@ -261,7 +261,7 @@
                                                 </div>
                                             </div>   
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-xs-6">
                                                     <div class="form-group">
                                                         <label class="input">
                                                             <i class="icon-append fa fa-lock"></i>
@@ -297,7 +297,7 @@
 
                                     <fieldset>
                                        
-                                        </section>
+                                       
                                         
                                         
                                         <section>
@@ -314,12 +314,14 @@
                                                     </button>
                                                 </div>
                                         </section>
+                                        <div class="form-footer">
+                                			<p>Already have an account? <a href="signin">Click here to sign in.</a></p>
+                            			</div>
+                                         </section>
                                     </fieldset>
                                 </form:form>  
                             </div>
-                            <div class="form-footer">
-                                <p>Already have an account? <a href="signin">Click here to sign in.</a></p>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

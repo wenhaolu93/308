@@ -1,7 +1,8 @@
 package services;
 
 import java.util.List;
-import entity.*;
+
+import entity.User;
 
 public interface DataService {
 	public int insertRow(User user);
